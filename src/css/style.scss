@@ -1,0 +1,22 @@
+@import './lieux.scss';
+
+html{
+    background-color: #ffffff;
+    color: black;
+    font-size: 12px;
+    width: 100%;
+}
+
+
+$base-font-size: 16px;
+
+body {
+    font-size: $base-font-size;
+}
+
+.container {
+    font-size: 1rem;
+    &-test {
+        background-color: red;
+    }
+}

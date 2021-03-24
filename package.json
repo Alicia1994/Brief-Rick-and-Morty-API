@@ -17,7 +17,8 @@
     "url": "https://github.com/Alicia1994/Brief-Rick-and-Morty-API/issues"
   },
   "homepage": "https://github.com/Alicia1994/Brief-Rick-and-Morty-API#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "sass": "^1.32.8"
   }
 }

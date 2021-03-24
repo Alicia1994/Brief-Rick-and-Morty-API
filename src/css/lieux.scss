@@ -1,0 +1,30 @@
+html {
+    background-color: #000;
+    font-family: "Nunito", sans-serif;
+  }
+  
+  .container_lieux {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 25%;
+    padding-top: 40px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: #101010;
+    border-radius: 10px;
+    color: white;
+    min-width: 200px;
+    padding: 12px;
+    margin: 12px;
+    margin-top: 25px;
+  }
+  .card__text-container {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #33F4FE;
+  }
+  
