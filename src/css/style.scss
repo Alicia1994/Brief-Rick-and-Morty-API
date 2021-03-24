@@ -1,0 +1,13 @@
+@import './personnages/personnages.scss';
+$base-font-size: 16px;
+body {
+    font-size: $base-font-size;
+}
+
+.container {
+    font-size: 1rem;
+    &-test {
+        background-color: red;
+    }
+   
+}

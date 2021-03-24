@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/Alicia1994/Brief-Rick-and-Morty-API#readme",
   "dependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "devDependencies": {
     "sass": "^1.32.8"
   }
 }
