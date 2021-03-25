@@ -2,10 +2,13 @@
     width: 50%;
 }
 
-.saison {
+.container_saison {
     background-color: blue;
-    &-details {
-        width: 50%;
-        background-color: red;
+}
+
+.saison_details {
+    background-color: antiquewhite;
+    &-characters {
+        display: none;
     }
 }
