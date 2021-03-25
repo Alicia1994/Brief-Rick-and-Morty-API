@@ -1,3 +1,11 @@
 #container__episodes {
     width: 50%;
 }
+
+.saison {
+    background-color: blue;
+    &-details {
+        width: 50%;
+        background-color: red;
+    }
+}

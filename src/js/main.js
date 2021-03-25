@@ -1,45 +1,44 @@
 window.onload = loadPosts;
 
 function loadPosts() {
-    let xhr = new XMLHttpRequest();
-    let method = "GET";
-    let url = `https://rickandmortyapi.com/api/episode`;
-    let url2 = `"https://rickandmortyapi.com/api/episode?page=2"`
-    xhr.open(method, url);
-    xhr.onload = function(event) {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            if (this.status === 200) {
-                const response = JSON.parse(this.responseText);
-                console.log(response);
-                let output = ``;
-                response.results.forEach(function(post) {
-                    output += `
-                        <div>${post.id}</div>
-                        <div>${post.name}</div>
-                        <div>${post.air_date}</div>
-                        <div>${post.episode}</div>
-                        <div>${post.characters.join('\r')}</div>
-                        <div>${post.url}</div>
-                        <div>${post.created}</div>
+    Promise.all([
+        fetch('https://rickandmortyapi.com/api/episode?page=1'),
+        fetch('https://rickandmortyapi.com/api/episode?page=2'),
+        fetch('https://rickandmortyapi.com/api/episode?page=3')
+    ]).then(function(responses) {
+        return Promise.all(responses.map(function(response) {
+            return response.json();
+        }));
+    }).then(function(data) {
+        let output = ``;
+        data.[0].results.forEach(function(post) {
+            output += `
+                    <div class="saison" id="saison_01">
+                        <div class="saison-details" id="saison_01-episodes">${post.episode} -` + ` ${post.name}</div>
+                        <div class="saison-characters">photo, nom, genre, espèce, type</div>
+                    </div>
                     `;
-                });
-                response.results.forEach(function(post) {
-                    output += `
-                        <div>${post.id}</div>
-                        <div>${post.name}</div>
-                        <div>${post.air_date}</div>
-                        <div>${post.episode}</div>
-                        <div>${post.characters.join('\r')}</div>
-                        <div>${post.url}</div>
-                        <div>${post.created}</div>
+        });
+        data.[1].results.forEach(function(post) {
+            output += `
+                    <div class="saison" id="saison_02">
+                        <div class="saison-details" id="saison_02-episodes">${post.episode} -` + ` ${post.name}</div>
+                    </div>
                     `;
-                });
-                document.querySelector('#container_episodes').innerHTML = output;
-            } else {
-                console.log(this.status);
-                alert('Erreur')
-            }
-        }
-    }
-    xhr.send();
+        });
+        data.[2].results.forEach(function(post) {
+            output += `
+                    <div class="saison" id="saison_03">
+                        <div class="saison-details" id="saison_03-episodes">${post.episode} -` + ` ${post.name}</div>
+                    </div>
+                    `;
+        });
+        document.querySelector('#container_episodes').innerHTML = output;
+        console.log(data);
+    }).catch(function(error) {
+        console.log(error);
+    });
 }
+
+// <div>${post.characters.join('\r')}</div>
+// <div>${post.air_date}</div>

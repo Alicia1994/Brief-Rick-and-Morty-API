@@ -2,6 +2,14 @@
   width: 50%;
 }
 
+.saison {
+  background-color: blue;
+}
+.saison-details {
+  width: 50%;
+  background-color: red;
+}
+
 html {
   background-color: #fff;
   color: #000;

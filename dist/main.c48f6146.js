@@ -121,34 +121,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 window.onload = loadPosts;
 
 function loadPosts() {
-  var xhr = new XMLHttpRequest();
-  var method = "GET";
-  var url = "https://rickandmortyapi.com/api/episode";
-  var url2 = "\"https://rickandmortyapi.com/api/episode?page=2\"";
-  xhr.open(method, url);
-
-  xhr.onload = function (event) {
-    if (this.readyState === XMLHttpRequest.DONE) {
-      if (this.status === 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response);
-        var output = "";
-        response.results.forEach(function (post) {
-          output += "\n                        <div>".concat(post.id, "</div>\n                        <div>").concat(post.name, "</div>\n                        <div>").concat(post.air_date, "</div>\n                        <div>").concat(post.episode, "</div>\n                        <div>").concat(post.characters.join('\r'), "</div>\n                        <div>").concat(post.url, "</div>\n                        <div>").concat(post.created, "</div>\n                    ");
-        });
-        response.results.forEach(function (post) {
-          output += "\n                        <div>".concat(post.id, "</div>\n                        <div>").concat(post.name, "</div>\n                        <div>").concat(post.air_date, "</div>\n                        <div>").concat(post.episode, "</div>\n                        <div>").concat(post.characters.join('\r'), "</div>\n                        <div>").concat(post.url, "</div>\n                        <div>").concat(post.created, "</div>\n                    ");
-        });
-        document.querySelector('#container_episodes').innerHTML = output;
-      } else {
-        console.log(this.status);
-        alert('Erreur');
-      }
-    }
-  };
-
-  xhr.send();
-}
+  Promise.all([fetch('https://rickandmortyapi.com/api/episode?page=1'), fetch('https://rickandmortyapi.com/api/episode?page=2'), fetch('https://rickandmortyapi.com/api/episode?page=3')]).then(function (responses) {
+    return Promise.all(responses.map(function (response) {
+      return response.json();
+    }));
+  }).then(function (data) {
+    var output = "";
+    data[0].results.forEach(function (post) {
+      output += "\n                    <div class=\"saison\" id=\"saison_01\">\n                        <div class=\"saison-details\" id=\"saison_01-episodes\">".concat(post.episode, " -") + " ".concat(post.name, "</div>\n                        <div class=\"saison-characters\">photo, nom, genre, esp\xE8ce, type</div>\n                    </div>\n                    ");
+    });
+    data[1].results.forEach(function (post) {
+      output += "\n                    <div class=\"saison\" id=\"saison_02\">\n                        <div class=\"saison-details\" id=\"saison_02-episodes\">".concat(post.episode, " -") + " ".concat(post.name, "</div>\n                    </div>\n                    ");
+    });
+    data[2].results.forEach(function (post) {
+      output += "\n                    <div class=\"saison\" id=\"saison_03\">\n                        <div class=\"saison-details\" id=\"saison_03-episodes\">".concat(post.episode, " -") + " ".concat(post.name, "</div>\n                    </div>\n                    ");
+    });
+    document.querySelector('#container_episodes').innerHTML = output;
+    console.log(data);
+  }).catch(function (error) {
+    console.log(error);
+  });
+} // <div>${post.characters.join('\r')}</div>
+// <div>${post.air_date}</div>
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -177,7 +171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53808" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
