@@ -118,26 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/js/lieux.js":[function(require,module,exports) {
-fetch('https://rickandmortyapi.com/api/location').then(function (res) {
-  return res.json();
-}).then(function (data) {
-  var tableauLocation = data.results;
-  console.log(tableauLocation);
 
-  for (var index = 0; index < tableauLocation.length; index++) {
-    var location = tableauLocation[index];
-    console.log(location);
-    var container_lieux = document.querySelector("#container_lieux");
-    console.log(container_lieux);
-    container_lieux.innerHTML += "<div class=\"container_lieux\">\n         <div class=\"card\">\n         <div class=\"card__text-container\">\n         <span>".concat(location.name, "</span>\n         <span>").concat(location.dimension, "</span>\n         <span>").concat(location.type, "</span>\n         </div>\n         </div>\n         </div>");
-  }
-}).catch(function (error) {
-  console.error(error);
-}); // let output = ’’;
-// res.results.forEach(function(post){
-//     output += ’’;
-// });
-// document.querySelector("#container_lieux").innerHTML = output
 },{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -166,7 +147,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53280" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55330" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

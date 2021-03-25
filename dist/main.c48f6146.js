@@ -118,7 +118,41 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/js/main.js":[function(require,module,exports) {
+fetch('https://rickandmortyapi.com/api/location').then(function (res) {
+  return res.json();
+}).then(function (data) {
+  var tableauLocation = data.results;
 
+  for (var index = 0; index < tableauLocation.length; index++) {
+    var location = tableauLocation[index];
+    var container_lieux = document.querySelector("#container_lieux");
+    container_lieux.innerHTML += "<div class=\"card\">\n            <div class=\"card__text-container\">\n                <div class=\"card__text-name\">\n                    <span>".concat(location.name, "</span>\n                </div>\n                <div class=\"card__text-others\">\n                    <ul>\n                    <li><span>").concat(location.dimension, "</span></li>\n                    <li><span>").concat(location.type, "</span></li>\n                    //<li><span>").concat(location.residents.join('\r'), "</span></li>\n                    <ul>\n                </div>\n            </div>\n         </div>");
+  }
+
+  var cardName = document.querySelectorAll(".card__text-name");
+
+  for (var i = 0; i < cardName.length; i++) {
+    cardName[i].addEventListener("click", function () {
+      var deroulant = this.nextElementSibling;
+
+      if (deroulant.style.display === "block") {
+        deroulant.style.display = "none";
+      } else {
+        deroulant.style.display = "block";
+      }
+    });
+  }
+}).catch(function (error) {
+  console.error(error);
+}); // let output = ’’;
+// res.results.forEach(function(post){
+//     output += ’’;
+// });
+// document.querySelector("#container_lieux").innerHTML = output
+// JS POUR DEROULER LES DETAILS
+// cardName.addEventListener("click", event => {
+//     console.log(event);
+// })
 },{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +181,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53280" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61633" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

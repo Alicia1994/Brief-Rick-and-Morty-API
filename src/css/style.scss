@@ -95,16 +95,10 @@ header{
     .link_planete{
         position: relative;
         
-        
-
         &:hover span{
             display: block;
             transform: scale(1.5);
             transition: ease-in 2s;
-
-
-
-
         }
     
         .titre1{
@@ -116,10 +110,8 @@ header{
             font-weight: 600;
             z-index: 2;
             display:none;
-
             }
         
-
         .fa-globe-europe{
             font-size: 100px;
             color: purple;
@@ -146,7 +138,6 @@ header{
             left: -1px;
             border-radius: 50%;
             display: none;
-
         }
 }
     
