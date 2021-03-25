@@ -117,79 +117,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"src/js/lieux.js":[function(require,module,exports) {
+fetch('https://rickandmortyapi.com/api/location').then(function (res) {
+  return res.json();
+}).then(function (data) {
+  var tableauLocation = data.results;
+  console.log(tableauLocation);
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+  for (var index = 0; index < tableauLocation.length; index++) {
+    var location = tableauLocation[index];
+    console.log(location);
+    var container_lieux = document.querySelector("#container_lieux");
+    console.log(container_lieux);
+    container_lieux.innerHTML += "<div class=\"container_lieux\">\n         <div class=\"card\">\n         <div class=\"card__text-container\">\n         <span>".concat(location.name, "</span>\n         <span>").concat(location.dimension, "</span>\n         <span>").concat(location.type, "</span>\n         </div>\n         </div>\n         </div>");
   }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/css/style.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./../img/wallpapersden_rick.jpg":[["wallpapersden_rick.281eeb44.jpg","src/img/wallpapersden_rick.jpg"],"src/img/wallpapersden_rick.jpg"],"./../img/Rick_and_Morty_logo.png":[["Rick_and_Morty_logo.d2e1fe4a.png","src/img/Rick_and_Morty_logo.png"],"src/img/Rick_and_Morty_logo.png"],"./../img/801x410_rick.jpg":[["801x410_rick.60f2046c.jpg","src/img/801x410_rick.jpg"],"src/img/801x410_rick.jpg"],"./../img/photo_rick.jpeg":[["photo_rick.06afc3d6.jpeg","src/img/photo_rick.jpeg"],"src/img/photo_rick.jpeg"],"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}).catch(function (error) {
+  console.error(error);
+}); // let output = ’’;
+// res.results.forEach(function(post){
+//     output += ’’;
+// });
+// document.querySelector("#container_lieux").innerHTML = output
+},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -392,5 +341,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.73cabe44.js.map
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/lieux.js"], null)
+//# sourceMappingURL=/lieux.93d0b2ca.js.map
