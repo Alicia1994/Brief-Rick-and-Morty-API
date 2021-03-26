@@ -64,37 +64,19 @@ header{
 
 }
 
-.planete1{
+.forme_planete {
     position: absolute;
-    left: 400px;
-    top: 200px;
     border-radius: 50%;
-    animation-name: rainbow;
-    animation-duration: 15s;
-    animation-fill-mode: backwards;
-    animation-iteration-count: infinite;
 
-  @keyframes rainbow{
-    0% {background-color: none;
-    top : 200px;
-    left: 200px;
-    opacity: 0.9}
-    35% {background-color: red;
-    top : 150px;
-    opacity: 0.8}
-    70% {background-color: blue;
-    top: 200px;
-    opacity: 0.9}
-    100% {background-color: red;
-    top: 150px;
-    opacity: 1;}
-  }
-    
 
-    
-    .link_planete{
-        position: relative;
-        
+
+.link_planete {
+    position: relative;
+
+     .fas{
+        font-size: 100px;
+    }
+
         &:hover span{
             display: block;
             transform: scale(1.5);
@@ -104,66 +86,161 @@ header{
         .titre1{
             position: absolute;
             bottom: 10px;
-            left: 20px;
+            left: 15px;
             color: white;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 600;
             z-index: 2;
             display:none;
             }
-        
-        .fa-globe-europe{
-            font-size: 100px;
-            color: purple;
-        }
-
         .bg{
-            position: absolute;
-            bottom: -10px;
-            left: -1px;
-            height: 100px;
-            width: 100px;
-            background: rgba(0,0,0,0.7);
-            border-radius:50%;
-            z-index:1;
-            display: none;
+                position: absolute;
+                bottom: -10px;
+                left: -1px;
+                height: 100px;
+                width: 100px;
+                background: rgba(0,0,0,0.7);
+                border-radius:50%;
+                z-index:1;
+                display: none;
+            }
+
+            .fond_planete{
+                
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                bottom: -10px;
+                left: -1px;
+                border-radius: 50%;
+                display: none;
+            }
+}
+}
+
+
+.planete1{
+    right: 200px;
+    top: 200px;
+    animation-duration: 15s;
+    animation-name: rainbow1;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+
+  @keyframes rainbow1{
+    0% {background-color: none;
+    top : 200px;
+    right: 200px;
+    opacity: 0.9}
+    25% {background-color: red;
+    top : 150px;
+    right: 150px;
+    opacity: 0.8}
+    50% {background-color: blue;
+    top: 100px;
+    opacity: 0.9};
+    75% {background-color:red;
+    top: 150px;
+    right: 150px;
+    opacity: 0.9}
+    100% {background-color: blue;
+    top: 200px;
+    right: 200px;
+    opacity: 1;}
+  }
+        
+    .link_planete{
+
+        .fa-globe-europe{
+            color: purple;
         }
 
         .fond_planete1{
             content: url(../img/photo_rick.jpeg);
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            bottom: -10px;
-            left: -1px;
-            border-radius: 50%;
-            display: none;
         }
-}
-    
-
-
-
-}
-
-.planete2{
-    position: absolute;
-    left: 20px;
-    top: 140px;
-
-    .fa-globe-americas{
-        font-size: 40px;
-        color: blue;
     }
 }
 
-.planete3{
-    position: absolute;
-    left: 100px;
-    top: 260px;
+.planete2{
+     right: 200px;
+     top: 500px;
+     animation-name: rainbow2;
+     animation-duration: 15s;
+     animation-fill-mode: backwards;
+     animation-iteration-count: infinite;
 
-    .fa-globe-africa{
-        font-size: 40px;
-        color: pink;
+  @keyframes rainbow2{
+    0% {background-color: none;
+    top : 500px;
+    right: 200px;
+    opacity: 0.9}
+    25% {background-color: blue;
+     top : 600px;
+    right: 150px;
+    opacity: 0.8}
+    50% {background-color: cyan;
+    top: 550px;
+    opacity: 0.9};
+    75% {background-color:black;
+    top: 600px;
+    right: 200px;
+    opacity: 0.9}
+    100% {background-color: cyan;
+    top: 500px;
+    right: 150px;
+    opacity: 1;}
+  } 
+     
+     .link_planete{
+
+         .fa-globe-americas{
+             color: blue;
+         }
+
+         .fond_planete2{
+             content: url(../img/morty_photo.jpeg);
+         }
+     }
+}
+
+.planete3{
+    right: 1100px;
+    top: 400px;
+    animation-name: rainbow3;
+    animation-duration: 15s;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite;
+
+ @keyframes rainbow3{
+   0% {background-color: none;
+   top : 300px;
+   right: 1200px;
+   opacity: 0.9}
+   25% {background-color: pink;
+    top : 400px;
+   right: 1100px;
+   opacity: 0.8}
+   50% {background-color: blue;
+   top: 500px;
+   opacity: 0.9};
+   75% {background-color:pink;
+   top: 400px;
+   right: 1200px;
+   opacity: 0.9}
+   100% {background-color: blueviolet;
+   top: 300px;
+   right: 1200px;
+   opacity: 1;}
+ } 
+    
+    .link_planete{
+
+        .fa-globe-americas{
+            color: cyan;
+        }
+
+        .fond_planete3{
+            content: url(../img/rickmort_photo3.png);
+        }
     }
 }

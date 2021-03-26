@@ -5,7 +5,16 @@ html {
     background-size: cover;
     font-family: "Nunito", sans-serif;
   }
-  
+
+header
+{
+  width: 100%;
+  background-color: white;
+  height: 100px;
+
+}
+
+
   .container_lieux {
   
     flex-direction: column;
@@ -39,8 +48,8 @@ html {
     }
 
     .card__text-others{
-      display: none;    }
-
+      display: none;   
 
   }
+}
   

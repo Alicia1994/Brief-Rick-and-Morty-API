@@ -12,17 +12,26 @@
 <body>
 
 
-    <header>
- 
-        
-
-
+    <header> 
+        <div id='radioButtonType'>
+            <p>TRI PAR TYPE DE PLANETES</p>
+            <input type="radio" id="planet" name="type_planete" value="planet">
+            <label for="planet"> Planet </label>
+            <input type="radio" id="cluster" name="type_planete" value="planet">
+            <label for="cluster"> Cluster </label>
+            <input type="radio" id="space station" name="type_planete" value="cluster">
+            <label for="Planet"> Space Station </label>
+            <input type="radio" id="microverse" name="type_planete" value="microverse">
+            <label for="Planet"> Microverse </label>
+            <input type="radio" id="fantasy town" name="type_planete" value="fantasy town">
+            <label for="Planet"> Fantasy town </label>
+            <input type="radio" id="dream" name="type_planete" value="dream">
+            <label for="Planet"> Dream </label>
+        </div>
     </header>
 
-    <main>
-        
+    <main>  
     <div id="container_lieux"></div>
-
     </main>
 
     <script src="src/js/main.js"></script>
