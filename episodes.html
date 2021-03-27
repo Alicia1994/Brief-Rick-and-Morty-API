@@ -12,13 +12,38 @@
 <body>
     <main>
         <header>
-            <ul>
-                <li><a href="episodes.html">episodes</a></li>
-                <li><a href="personnages.html">personnages</a></li>
-                <li><a href="lieux.html">lieux</a></li>
-            </ul>
+            <nav class="container_nav">
+                <a href="index.html"><img src="src/img/Rick_and_Morty_logo.png" href="index.html"></a>
+                <ul>
+                    <li><a href="episodes.html">Episodes</a></li>
+                    <li><a href="personnages.html">Personnages</a></li>
+                    <li><a href="lieux.html">Lieux</a></li>
+                </ul>
+            </nav>
         </header>
-        <div id="container_episodes"></div>
+        <section>
+            <fieldset>
+                <div>
+                    <label>
+                        <input type="radio" name="radio"/>
+                        <span>Saison 01</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="radio" checked/>
+                        <span>Saison 02</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="radio"/>
+                        <span>Saison 03</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="radio"/>
+                        <span>Saison 04</span>
+                    </label>
+                </div>
+            </fieldset>
+            <div id="list-episodes"></div>
+        </section>
     </main>
     <script src="src/js/main.js"></script>
 </body>

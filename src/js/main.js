@@ -1,102 +1,73 @@
-window.onload = loadEpisodes;
+window.onload = LoadEpisode;
 
-function loadEpisodes() {
-    Promise.all([
-        fetch('https://rickandmortyapi.com/api/episode?page=1'),
-        fetch('https://rickandmortyapi.com/api/episode?page=2'),
-        fetch('https://rickandmortyapi.com/api/episode?page=3'),
-        fetch('https://rickandmortyapi.com/api/character')
-    ]).then(function(responses) {
-        return Promise.all(responses.map(function(response) {
-            return response.json();
-        }));
-    }).then(function(data) {
-        let output = ``;
-        data[0].results.forEach(function(post) {
-            output += `
-                    <div class="container_saison" id="saison_01">
-                        <div class="saison_details" id="saison_01-episodes">
-                            <span>${post.episode} -` + ` ${post.name}</span>
-                        </div>
-                        <div id="container_episodes-details"></div>
-                    </div>
-                    `;
-        });
-        data[1].results.forEach(function(post) {
-            output += `
-                    <div class="container_saison" id="saison_02">
-                        <div class="saison_details" id="saison_02-episodes">
-                            <span>${post.episode} -` + ` ${post.name}</span>
-                        </div>
-                        <div id="container_episodes-details"></div>
-                    </div>
-                    `;
-        });
-        data[2].results.forEach(function(post) {
-            output += `
-                    <div class="container_saison" id="saison_03">
-                        <div class="saison_details" id="saison_03-episodes">
-                            <span>${post.episode} -` + ` ${post.name}</span>
-                        </div>
-                        <div id="container_episodes-details"></div>
-                    </div>
-                    `;
-        });
-        data[3].results.forEach(function(post) {
-            console.log(post.count);
-            output += `
-                    <div class="saison_details-characters">
-                        <ul>
-                            <li>photo</li>
-                            <li>nom</li>
-                            <li>genre</li>
-                            <li>espèce</li>
-                            <li>type</li>
-                        <ul>
-                    </div>
-                    `;
-        });
+const divListEpisode = document.querySelector('#list-episodes');
 
-        document.querySelector('#container_episodes').innerHTML = output;
-        let saisonDetails = document.querySelectorAll(".saison_details");
+function LoadEpisode() {
 
-        for (let i = 0; i < saisonDetails.length; i++) {
-            saisonDetails[i].addEventListener("click", function(event) {
-                let divChars = event.target.querySelector('#container-character');
-                for (let j = 0; j < array.length; j++) {
-                    const element = array[j];
+    let urls = ['https://rickandmortyapi.com/api/episode?page=1', 'https://rickandmortyapi.com/api/episode?page=2', 'https://rickandmortyapi.com/api/episode?page=3']
+    for (let index = 0; index < urls.length; index++) {
+        const url = urls[index];
+    }
+    Promise.all(urls.map(url => fetch(url)))
+        .then(resp => Promise.all(resp.map(r => r.json())))
+        .then(function(data) {
 
-                }
-                //boucle for avec tes fetch en série
-                // let tableau = [] contient URI personnages
-                //fetch(tableau[i]).then() 
+            let tabData = data[0].results.concat(data[1].results, data[2].results);
+            console.log(tabData);
 
-                let scroll_action = this.nextElementSibling;
-                if (scroll_action.style.display === "block") {
-                    scroll_action.style.display = "none";
-                } else {
-                    scroll_action.style.display = "block";
-                }
-            })
-        }
-        let arrayChars = ["https://rickandmortyapi.com/api/character/?page=2", "https://rickandmortyapi.com/api/character/?page=2", "https://rickandmortyapi.com/api/character/?page=3", "https://rickandmortyapi.com/api/character/?page=4", "https://rickandmortyapi.com/api/character/?page=5", "https://rickandmortyapi.com/api/character/?page=6", "https://rickandmortyapi.com/api/character/?page=7"]
-        console.log(arrayChars);
-        console.log(data);
-    }).catch(function(error) {
-        console.log(error);
-    });
+            for (const episode of tabData) {
+
+                divListEpisode.innerHTML += `
+                    <div class="episode-name" id="episode-${episode.id}">${episode.episode} - ${episode.name}</div>
+                    <div id="characters"></div>
+                `
+            }
+
+            let divEpisode = document.querySelectorAll('.episode-name');
+
+            for (let i = 0; i < divEpisode.length; i++) {
+
+                divEpisode[i].addEventListener("click", () => {
+
+                    let listUriCharacter = tabData[i].characters;
+                    getCharacterDetails(listUriCharacter, divEpisode[i]);
+
+                    let clickScroll = divEpisode[i].nextElementSibling;
+                    toggleClass(clickScroll, "display-none");
+                })
+            }
+        })
+        .catch(function(error) {
+            console.error(error);
+        })
 }
 
-// <div>${post.characters.join('\r')}</div>
-// <div>${post.air_date}</div>
-{
-    /* <div class="saison_details-characters">
-    <ul>
-        <li>photo</li>
-        <li>nom</li>
-        <li>genre</li>
-        <li>espèce</li>
-        <li>type</li>
-    <ul>
-    </div> */
+function getCharacterDetails(listUriCharacter, divEpisode) {
+
+    let reponse = [];
+    divEpisode.nextElementSibling.innerHTML = "";
+
+    for (const uri of listUriCharacter) {
+        fetch(uri).then((resp) => {
+            return resp.json()
+        }).then((resp2) => {
+            reponse.push(resp2);
+            divEpisode.nextElementSibling.innerHTML += `
+            <div class="characters_card">
+            <img src="${resp2.image}" alt="${resp2.name}">
+                
+                <div class="characters_card-content">
+                    <h2>${resp2.name}</h2>
+                    <div class="details">${resp2.gender}</div>
+                    <div class="details">${resp2.species}</div>
+                    <div class="details">${resp2.type}</div>
+                </div>
+            </div>
+            `
+        })
+    }
+}
+
+function toggleClass(elem, className) {
+    elem.classList.toggle(className);
 }
