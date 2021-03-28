@@ -1,154 +1,168 @@
+// let urls = ["https://rickandmortyapi.com/api/character", "https://rickandmortyapi.com/api/character/?page=2", "https://rickandmortyapi.com/api/character/?page=3"];
+// for (let index = 0; index < urls.length; index++) {
+//     const url = urls[index];
+// }
+// Promise.all(urls.map(url => fetch(url)))
+//     .then(resp => Promise.all(resp.map(r => r.json())))
+
 window.onload = LoadLocation;
 
-function LoadLocation () {
+const container_lieux = document.querySelector("#container_lieux");
 
-    Promise.all([
+function LoadLocation() {
 
-fetch('https://rickandmortyapi.com/api/location?page=1'),
-fetch('https://rickandmortyapi.com/api/location?page=2'),
-fetch('https://rickandmortyapi.com/api/location?page=3'),
-fetch('https://rickandmortyapi.com/api/location?page=4'),
-fetch('https://rickandmortyapi.com/api/location?page=5'),
-fetch('https://rickandmortyapi.com/api/location?page=6'),
+    let urls = ['https://rickandmortyapi.com/api/location?page=1', 'https://rickandmortyapi.com/api/location?page=2', 'https://rickandmortyapi.com/api/location?page=3', 'https://rickandmortyapi.com/api/location?page=4', 'https://rickandmortyapi.com/api/location?page=5', 'https://rickandmortyapi.com/api/location?page=6']
+    for (let index = 0; index < urls.length; index++) {
+        const url = urls[index];
+    }
+    Promise.all(urls.map(url => fetch(url)))
+        .then(resp => Promise.all(resp.map(r => r.json())))
 
-// tout stocker dans le local storage puis manipulation de l'objet
+        .then(function (data) {
 
-])
+            let tabData = data[0].results.concat(data[1].results, data[2].results, data[3].results, data[4].results, data[5].results);
 
-.then(function(res) {
-    return Promise.all(res.map(function(res) {
-  return res.json();
-    }))
-})
-.then(function(data) {
-
-    for (let i = 0 ; i < data.length ; i++) {
-        // tableauLocation = tableau d'objets avec toutes mes data
-        let tableauLocation = data[i].results;
-        
-        // FAIRE DES BOUTONS RADIO POUR INSERER DANS PLANET
-
-
-        
-        
-            // je déclare un  tableau pour y insérer mes données filtrés par type
-            let arrayResult = tableauLocation.filter(function(typeData){  
-            // METTRE UNE CONDITION ??
-                    return typeData.type == "Cluster";
-                }
-            )
-
-                // let radioGroup = document.getElementsByName("type_planete");
-                // let cluster = docum'#cluster');ent.querySelector(
-                
-                // if (radioGroup[1].checked) {
-                // // ajouter une condition pour le type
-
-                // return typeData.type == "Cluster";
-                
-                // } else if (document.querySelector('#planet').checked){
-                //     return typeData.type == "Planet";
-                // }
-                    
-
-                
-                
-
-
-
-
-                // je boucle sur le tableau filtré
-        for (let index = 0; index < arrayResult.length; index++) {
-            
-            
-         
-            //let location = tableauLocation[index];
-            let location = arrayResult[index];
-            
-
-            const container_lieux = document.querySelector("#container_lieux");
-            container_lieux.innerHTML += 
-            `<div class="card">
+            tabData.forEach(location => {
+                container_lieux.innerHTML +=
+                `<div class="card">
                 <div class="card__text-container">
-                    <div class="card__text-name">
-                        <span> Name : ${location.name}</span>
+                    <div class="location-name" data-url="${location.url}"  id="location-${location.id}">
+                        Name : ${location.name}
+                        <ul class="location_details">
+                            <li>Dimension : ${location.dimension}</li>
+                            <li>Type : ${location.type}</li>              
+                        </ul>
                     </div>
-                    <div class="card__text-others">
-                        <ul>
-                        <li><span>Dimension : ${location.dimension}</span></li>
-                        <li><span>Type : ${location.type}</span></li>
-                        <li><span>Residents : ${location.residents.join('\r')}</span></li>
-                        <ul>
-                    </div>
-                    <div id="container_residents> </div>
-                </div>
-             </div>`
-            }
-            // attraper les character
-            // ${location.residents.join('\r')}
+                    
+                    <div class="character_details">   
+                </div>   
+                </div>`
 
-// tableau.location = un URI par résident 
-// boucler sur ce tableau
-// let arrayResidents = location.residents
-// for (let ind = 0; ind < arrayResidents.length ; ind ++) {
-// 
-//}
-//
-}
+                    let divLocation = document.querySelectorAll(".location-name");
+                    divLocation.forEach(locationName => {
+                       
+                        locationName.addEventListener("click", (event) => {
+                            fetch(event.target.dataset.url).then((resp) => {
+                              
+                                return resp.json()
+                            }).then((location) => {
+                           
+                                getCharacterDetails(location.residents, event.target);
+                            })
 
-// BOUCLE POUR DEROULER 
+                            let clickScroll_details = event.target.querySelector(".location_details");
 
-    let cardName = document.querySelectorAll(".card__text-name");
-    for (let i = 0; i < cardName.length; i++) {   
+                            let clickScroll_character = event.target.nextElementSibling;
+                            //let clickScroll_details = event.target.childNodes;
 
-// mettre une autre boucle for où on a va boucler sur le fetch pour le tableau character
+                            toggleClass(clickScroll_character, "character_details");
+                            toggleClass(clickScroll_details, "location_details");
+                        })
+                    });
+            });
 
-        cardName[i].addEventListener("click", function (event) {
 
-            // boucle pour mettre dans un tableau tout mes URI de character
+            let typesRadio = document.querySelectorAll("input[type=radio]");
 
-            // let arrayData = new Array();
-            // for (let n = 1; n <= 671 ; n++){
-            // let characterData =  `fetch("https://rickandmortyapi.com/api/character/${n}"`;
-            // arrayData.push(characterData);
-            // return arrayData;
-            // }
+            for (let ind = 0; ind < typesRadio.length; ind++) {
+                   
+                typesRadio[ind].addEventListener("change", (event) => {
+                    //console.log(tabData);
 
-            //fetch(tableau[i]).then() 
+                        let newTabData;
+                     if(event.target.value != "all"){
+                        newTabData = tabData.filter(data => data.type == `${event.target.id}`);
+                                            
+                        } else {
+                           newTabData = tabData;
+                     }
+        
+                    //console.log(newTabData);
 
-            // arrayData[i]
+                    container_lieux.innerHTML = "";
+                    newTabData.forEach((location, index) => {
+                        
+                        container_lieux.innerHTML +=
+                            `<div class="card">
+                            <div class="card__text-container">
+                                <div class="location-name" data-url="${location.url}"  id="location-${location.id}">
+                                    Name : ${location.name}
+                                    <ul class="location_details">
+                                        <li>Dimension : ${location.dimension}</li>
+                                        <li>Type : ${location.type}</li>              
+                                    </ul>
+                                </div>
+                                
+                                <div class="character_details">   
+                            </div>   
+                            </div>`
+
+                            document.querySelectorAll(".location-name").forEach(title => {
+                                
+                                title.addEventListener("click", (event)=> {
+                                    console.log(event);
+    
+                                        let listUriCharacter = tabData[index].residents;
+                                        console.log(listUriCharacter);
+                                        
+                                        fetch(event.target.dataset.url).then((resp) => {
+                                            //console.log(uri)
+                                            return resp.json()
+                                        }).then((location) => {
+                                           // console.log(location);
+                                           
+                                            //getCharacterDetails(location.residents, event.target);
+                                        })
+                                    
+                                        let clickScroll_details = event.target.querySelector(".location_details");
+                                        
+    
+                                        let clickScroll_character = event.target.parentNode.querySelector(".character_details");
+                                        
             
-            let clickScroll = this.nextElementSibling;
-            if (clickScroll.style.display === "block") {
-                clickScroll.style.display = "none";
-            } else {
-                clickScroll.style.display="block";
+
+                                        console.log(clickScroll_character, clickScroll_details)
+                                        toggleClass(clickScroll_character, "character_details");
+                                        toggleClass(clickScroll_details, "location_details");
+    
+                                        getCharacterDetails(location.residents, event.target);
+                                  
+                                    //console.log(event)
+                                })
+
+                            });                            
+
+                    });
+                })
             }
         })
-    }
-})
 
-.catch(function(error) {
-  console.error(error);
-})
+        .catch(function (error) {
+            console.error(error);
+        })
+}
+
+function getCharacterDetails(listUriCharacter, divEp) {
+    let reponse = [];
+    divEp.nextElementSibling.innerHTML = "";
+    //console.log(divEp);
+    for (const uri of listUriCharacter) {
+        fetch(uri).then((resp) => {
+            //console.log(uri)
+            return resp.json()
+        }).then((resp2) => {
+            //console.log(resp2.id)
+            reponse.push(resp2);
+            divEp.nextElementSibling.innerHTML += `<span> ${resp2.name} </span>`
+        })
+    }
 }
 
 
-  
-    // ])
-    
-    // .then(function(res) {
-    //     return Promise.all(res.map(function(res) {
-    //   return res.json();
-    //     }))
-    // })
-    // .then(function(data) {
-    
-    // }    
-    // .catch(function(error) {
-    //   console.error(error);
-    // })
-    // }
+function toggleClass(elem, className) {
+    elem.classList.toggle(className);
+}
+
 
 
 

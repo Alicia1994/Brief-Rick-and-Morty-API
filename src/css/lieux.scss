@@ -16,15 +16,14 @@ header
 
 
   .container_lieux {
-  
-    flex-direction: column;
-    padding: 25%;
+    display: flex;
+    flex-direction: row;
     padding-top: 40px;
     flex-wrap: wrap;
   }
   
   .card {
-    display: flex;
+    
     background-color:green;
     border-radius: 10px;
     color: white;
@@ -41,15 +40,24 @@ header
     color:white;
     justify-content: center;
 
-    .card__text-name {
+    .location-name {
       font-size: 25px;
       font-weight: 700;
       cursor: pointer;
+
+      .location_details{
+        display: none;
+      }
+      
     }
 
-    .card__text-others{
+    .character_details{
       display: none;   
-
   }
+
+  
+
 }
+
+
   
