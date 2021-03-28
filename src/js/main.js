@@ -80,7 +80,7 @@ function LoadLocation() {
                     //console.log(newTabData);
 
                     container_lieux.innerHTML = "";
-                    newTabData.forEach((location, index) => {
+                    newTabData.forEach(location => {
                         
                         container_lieux.innerHTML +=
                             `<div class="card">
@@ -97,12 +97,12 @@ function LoadLocation() {
                             </div>   
                             </div>`
 
-                            document.querySelectorAll(".location-name").forEach(title => {
+                            document.querySelectorAll(".location-name").forEach((title, index) => {
                                 
                                 title.addEventListener("click", (event)=> {
-                                    console.log(event);
+                                    //console.log(event);
     
-                                        let listUriCharacter = tabData[index].residents;
+                                        let listUriCharacter = newTabData[index].residents;
                                         console.log(listUriCharacter);
                                         
                                         fetch(event.target.dataset.url).then((resp) => {
@@ -116,6 +116,7 @@ function LoadLocation() {
                                     
                                         let clickScroll_details = event.target.querySelector(".location_details");
                                         
+                                        //console.log(event);
     
                                         let clickScroll_character = event.target.parentNode.querySelector(".character_details");
                                         
@@ -125,7 +126,7 @@ function LoadLocation() {
                                         toggleClass(clickScroll_character, "character_details");
                                         toggleClass(clickScroll_details, "location_details");
     
-                                        getCharacterDetails(location.residents, event.target);
+                                        getCharacterDetails(listUriCharacter, event.target);
                                   
                                     //console.log(event)
                                 })
