@@ -12,7 +12,7 @@ function LoadLocation() {
     console.log(divType);
     for (let index = 0; index < arrayType.length; index++) {
 
-        divType.innerHTML += `<input type="radio" id="${arrayType[index]}" name="type_planete" value="${arrayType[index]}"> <label for="${arrayType[index]}"> ${arrayType[index]} </label>`
+        divType.innerHTML += `<label for="${arrayType[index]}" > ${arrayType[index]} </label><input type="radio" id="${arrayType[index]}" name="type_planete" value="${arrayType[index]}"> |`
 
     }
     //***** FIN DE LA BOUCLE POUR BUTTON RADIO */

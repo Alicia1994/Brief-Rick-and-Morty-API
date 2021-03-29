@@ -60,14 +60,23 @@ html {
 
 /* filedset */
 
+
+#radioButtonType{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
 fieldset{
-  font-size: 20px;
+    color: black;
+    font-size: 20px;
 }
 
 /* nav */
 
 fieldset {
     border: none;
+    background-color:rgb(179, 155, 189);
 }
 
 #container_lieux {
@@ -151,7 +160,8 @@ li {
     overflow-y: scroll;
     scrollbar-color: rebeccapurple green;
     scrollbar-width: thin;
-    background: (url(../img/Rick-and-Morty_decord_fond_section.jpeg));
+    background: (url(../img/Rick-and-Morty_decord_fond_section.jpeg) 0 0 no-repeat);
+    opacity:0.8;
     background-size: 100%;
 }
 

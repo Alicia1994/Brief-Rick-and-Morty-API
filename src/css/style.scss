@@ -101,40 +101,41 @@ header {
 .planete1 {
     right: 200px;
     top: 200px;
-    animation-duration: 15s;
+    animation-duration: 16s;
     animation-name: rainbow1;
     animation-fill-mode: backwards;
     animation-iteration-count: infinite;
     @keyframes rainbow1 {
         0% {
-            background-color: none;
+            background-color: pink;
             top: 200px;
             right: 200px;
-            opacity: 0.9
+            opacity: 0.7
         }
         25% {
-            background-color: red;
-            top: 150px;
-            right: 150px;
-            opacity: 0.8
+            background-color: plum;
+            top: 300px;
+            right: 250px;
+            opacity: 0.9;
         }
         50% {
             background-color: blue;
-            top: 100px;
-            opacity: 0.9
+            top: 500px;
+            right: 150px;
+            opacity: 0.8;
         }
         ;
         75% {
             background-color: red;
-            top: 150px;
-            right: 150px;
-            opacity: 0.9
+            top: 300px;
+            right: 100px;
+            opacity: 0.8
         }
         100% {
-            background-color: blue;
+            background-color: palevioletred;
             top: 200px;
             right: 200px;
-            opacity: 1;
+            opacity: 0.7;
         }
     }
     .link_planete {
@@ -159,39 +160,40 @@ header {
             background-color: none;
             top: 300px;
             right: 1200px;
-            opacity: 0.9
+            opacity: 0.8
         }
         25% {
-            background-color: pink;
+            background-color: cyan;
             top: 400px;
             right: 1100px;
-            opacity: 0.8
+            opacity: 0.7
         }
         50% {
             background-color: blue;
-            top: 500px;
+            top: 300px;
+            right: 1000px;
             opacity: 0.9
         }
         ;
         75% {
-            background-color: pink;
-            top: 600px;
-            right: 1200px;
-            opacity: 0.9
+            background-color: white;
+            top: 150px;
+            right: 1100px;
+            opacity: 0.7
         }
         100% {
-            background-color: blueviolet;
+            background-color: purple;
             top: 300px;
             right: 1200px;
-            opacity: 1;
+            opacity: 0.8;
         }
     }
     .link_planete {
-        .fa-globe-americas {
+        .fa-globe-africa {
             color: cyan;
         }
         .fond_planete3 {
-            content: url(../img/rickmort_photo3.png);
+            content: url(../img/morty_photo.jpeg);
         }
     }
 }
