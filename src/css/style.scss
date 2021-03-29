@@ -58,7 +58,7 @@ header {
     .link_planete {
         position: relative;
         .fas {
-            font-size: 100px;
+            font-size: 200px;
         }
         &:hover span {
             display: block;
@@ -67,10 +67,10 @@ header {
         }
         .titre1 {
             position: absolute;
-            bottom: 10px;
-            left: 15px;
+            bottom: 30px;
+            left: 35px;
             color: white;
-            font-size: 15px;
+            font-size: 30px;
             font-weight: 600;
             z-index: 2;
             display: none;
@@ -79,8 +79,8 @@ header {
             position: absolute;
             bottom: -10px;
             left: -1px;
-            height: 100px;
-            width: 100px;
+            height: 200px;
+            width: 200px;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
             z-index: 1;
@@ -88,8 +88,8 @@ header {
         }
         .fond_planete {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             bottom: -10px;
             left: -1px;
             border-radius: 50%;
@@ -143,55 +143,6 @@ header {
         }
         .fond_planete1 {
             content: url(../img/photo_rick.jpeg);
-        }
-    }
-}
-
-.planete2 {
-    right: 200px;
-    top: 500px;
-    animation-name: rainbow2;
-    animation-duration: 15s;
-    animation-fill-mode: backwards;
-    animation-iteration-count: infinite;
-    @keyframes rainbow2 {
-        0% {
-            background-color: none;
-            top: 500px;
-            right: 200px;
-            opacity: 0.9
-        }
-        25% {
-            background-color: blue;
-            top: 600px;
-            right: 150px;
-            opacity: 0.8
-        }
-        50% {
-            background-color: cyan;
-            top: 550px;
-            opacity: 0.9
-        }
-        ;
-        75% {
-            background-color: black;
-            top: 600px;
-            right: 200px;
-            opacity: 0.9
-        }
-        100% {
-            background-color: cyan;
-            top: 500px;
-            right: 150px;
-            opacity: 1;
-        }
-    }
-    .link_planete {
-        .fa-globe-americas {
-            color: blue;
-        }
-        .fond_planete2 {
-            content: url(../img/morty_photo.jpeg);
         }
     }
 }

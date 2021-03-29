@@ -88,7 +88,7 @@ function LoadLocation() {
             // FILTRE -> création d'un array newTabData qui prendra la place de tabData si déclenchement d'un filtre autre que all
             typesRadio[ind].addEventListener("change", (event) => {
                 let newTabData;
-                if (event.target.value != "all") {
+                if (event.target.value != "All") {
                     newTabData = tabData.filter(data => data.type == `${event.target.id}`);
                 } else {
                     newTabData = tabData;

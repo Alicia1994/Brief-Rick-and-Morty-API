@@ -1,12 +1,9 @@
 html {
    font-family: 'New Tegomin', Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
-    color: black;
-    font-size: 12px;
-
+    color: purple;
+    background-color:black;
     width: 100%;
     height: auto;
-    background: no-repeat url(../img/rickmorty_lieux.png);
     background-size: cover;
 }
 
@@ -61,13 +58,16 @@ html {
     }
 }
 
+/* filedset */
+
+fieldset{
+  font-size: 20px;
+}
 
 /* nav */
 
-.choice_type {
-    width: 100%;
-    background-color: white;
-    height: 100px;
+fieldset {
+    border: none;
 }
 
 #container_lieux {
@@ -86,6 +86,12 @@ html {
     text-align: center;
     color: white;
     justify-content: center;
+    font-size: 16px;
+
+    h2{
+      font-size: 22px;
+    }
+
     .location-name {
         background-color: purple;
         font-size: 30px;
