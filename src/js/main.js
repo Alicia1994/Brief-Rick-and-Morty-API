@@ -1,6 +1,6 @@
 window.onload = LoadEpisode;
 
-const divListEpisode = document.querySelector('#list-episodes');
+const container_episode = document.querySelector("#container_episode");
 
 function LoadEpisode() {
 
@@ -10,74 +10,100 @@ function LoadEpisode() {
     }
     Promise.all(urls.map(url => fetch(url)))
         .then(resp => Promise.all(resp.map(r => r.json())))
-        .then(function(data) {
 
-            let tabData = data[0].results.concat(data[1].results, data[2].results);
+    .then(function(data) {
 
-            for (const episode of tabData) {
+        let tabData = data[0].results.concat(data[1].results, data[2].results);
 
-                divListEpisode.innerHTML += `
-                    <div class="episode-name" id="episode-${episode.id}">${episode.episode} - ${episode.name}</div>
-                    <div id="characters"></div>
-                `
-            }
+        tabData.forEach(episode => {
+            container_episode.innerHTML += `
+            <div class="episode-name" data-url="${episode.url}" id="episode-${episode.id}">${episode.episode} - ${episode.name}</div>
+            <div id="character_details">
+            </div>
+            `
 
-            let typesRadio = document.querySelectorAll("input[type=radio]");
-            for (let j = 0; j < typesRadio.length; j++) {
+            let divEpisode = document.querySelectorAll(".episode-name");
+            divEpisode.forEach(episodeName => {
 
-                typesRadio[j].addEventListener("change", (e) => {
-                    let newTabData;
-                    if (e.target.value != "all") {
-                        newTabData = tabData.filter(data => data.num == `${e.target.id}`);
-                        console.log(tabData[k].episode);
-                    } else {
-                        newTabData = tabData;
-                    }
+                episodeName.addEventListener("click", (event) => {
 
+                    fetch(event.target.dataset.url).then((resp) => {
+
+                        return resp.json()
+                    }).then((episode) => {
+                        getCharacterDetails(episode.characters, event.target);
+
+
+                        let clickScroll_character = event.target.nextElementSibling;
+                        toggleClass(clickScroll_character, "character_details");
+                    })
                 })
-            }
+            });
+        });
 
-            let divEpisode = document.querySelectorAll('.episode-name');
+        let typesRadio = document.querySelectorAll("input[type=radio]");
 
-            for (let i = 0; i < divEpisode.length; i++) {
+        for (let ind = 0; ind < typesRadio.length; ind++) {
 
-                divEpisode[i].addEventListener("click", () => {
+            typesRadio[ind].addEventListener("change", (event) => {
+                let newTabData;
+                if (event.target.value != "all") {
+                    newTabData = tabData.filter(data => data.episode.substr(0, 3) == `${event.target.id}`);
+                } else {
+                    newTabData = tabData;
+                }
 
-                    let listUriCharacter = tabData[i].characters;
-                    getCharacterDetails(listUriCharacter, divEpisode[i]);
+                container_episode.innerHTML = "";
+                newTabData.forEach(episode => {
 
-                    let clickScroll = divEpisode[i].nextElementSibling;
-                    toggleClass(clickScroll, "display-none");
-                })
-            }
-        })
-        .catch(function(error) {
-            console.error(error);
-        })
+                    container_episode.innerHTML += `
+                            <div class="episode-name" data-url="${episode.url}" id="episode-${episode.id}">${episode.episode} - ${episode.name}</div>
+                            <div id="character_details"></div>
+                            `
+
+                    document.querySelectorAll(".episode-name").forEach((title, index) => {
+
+                        title.addEventListener("click", (event) => {
+
+                            let listUriCharacter = newTabData[index].characters;
+
+                            getCharacterDetails(listUriCharacter, event.target);
+
+                            let clickScroll_character = event.target.nextElementSibling;
+
+                            toggleClass(clickScroll_character, "character_details");
+
+                        })
+                    });
+                });
+            })
+        }
+    })
+
+    .catch(function(error) {
+        console.error(error);
+    })
 }
 
-function getCharacterDetails(listUriCharacter, divEpisode) {
-
+function getCharacterDetails(listUriCharacter, divEp) {
     let reponse = [];
-    divEpisode.nextElementSibling.innerHTML = "";
-
+    divEp.nextElementSibling.innerHTML = "";
     for (const uri of listUriCharacter) {
         fetch(uri).then((resp) => {
             return resp.json()
         }).then((resp2) => {
             reponse.push(resp2);
-            divEpisode.nextElementSibling.innerHTML += `
-            <div class="characters_card">
-            <img src="${resp2.image}" alt="${resp2.name}">
-                
-                <div class="characters_card-content">
-                    <h2>${resp2.name}</h2>
-                    <div class="details">${resp2.gender}</div>
-                    <div class="details">${resp2.species}</div>
-                    <div class="details">${resp2.type}</div>
-                </div>
-            </div>
-            `
+            divEp.nextElementSibling.innerHTML +=
+                `<div class="characters_card">
+                    <img src="${resp2.image}" alt="${resp2.name}">
+                    <div class="characters_card-content">
+                        <h2>${resp2.name}</h2>
+                        <div class="details">${resp2.gender}</div>
+                        <div class="details">${resp2.species}</div>
+                        <div class="details">${resp2.type}</div>
+                    <div/> 
+                 </div>
+                `
         })
     }
 }
