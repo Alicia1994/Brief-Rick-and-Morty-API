@@ -39,13 +39,13 @@ function LoadLocation() {
                                 return resp.json()
                             }).then((location) => {                          
                                 getCharacterDetails(location.residents, event.target);
-                            })
 
-                            let clickScroll_details = event.target.childNodes[3];       
-                            let clickScroll_character = event.target.nextElementSibling;
-                            
-                            toggleClass(clickScroll_character, "character_details");
-                            toggleClass(clickScroll_details, "location_details");
+                                let clickScroll_details = event.target.childNodes[3];       
+                                let clickScroll_character = event.target.nextElementSibling;
+                                
+                                toggleClass(clickScroll_character, "character_details");
+                                toggleClass(clickScroll_details, "location_details");
+                            })
                         })
                     });
             });
@@ -61,7 +61,6 @@ function LoadLocation() {
                         } else {
                            newTabData = tabData;
                      }        
-                    //console.log(newTabData);
 
                     container_lieux.innerHTML = "";
                     newTabData.forEach(location => {
@@ -89,16 +88,16 @@ function LoadLocation() {
                                         fetch(event.target.dataset.url).then((resp) => {                                
                                             return resp.json()
                                         }).then((location) => {
-                                      })
-                                        
+                                            getCharacterDetails(listUriCharacter, event.target);
+
                                         let clickScroll_details = event.target.childNodes[3];
                                         let clickScroll_character = event.target.nextElementSibling;
                                         console.log(event.target.nextElementSibling);
                                                     
                                         toggleClass(clickScroll_character, "character_details");
                                         toggleClass(clickScroll_details, "location_details");
-                       
-                                        getCharacterDetails(listUriCharacter, event.target);
+                                      })      
+                                        
                                 })
                             });                            
                     });
@@ -114,13 +113,10 @@ function LoadLocation() {
 function getCharacterDetails(listUriCharacter, divEp) {
     let reponse = [];
     divEp.nextElementSibling.innerHTML = "";
-    //console.log(divEp);
     for (const uri of listUriCharacter) {
         fetch(uri).then((resp) => {
-            //console.log(uri)
             return resp.json()
         }).then((resp2) => {
-            //console.log(resp2.id)
             reponse.push(resp2);
             divEp.nextElementSibling.innerHTML += 
             `<div class="character">
