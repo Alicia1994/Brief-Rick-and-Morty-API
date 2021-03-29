@@ -1,7 +1,8 @@
-html{
+html {
     background-color: #ffffff;
     color: black;
     font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     height: auto;
     background: no-repeat url(../img/rickmorty_lieux.png);
@@ -9,139 +10,144 @@ html{
 }
 
 
-header{
-  width: 100%;
-  height: 100px;;
-  position: sticky;
-  background-image: linear-gradient(.02turn, #0B1575, 5%, black);
-  display: flex;
-  justify-content: space-between;
-  
+/* nav */
 
-  .logo{
-      content: url(../img/Rick_and_Morty_logo.png);
-      width: auto;
-      height: 60px;
-      padding: 20px 20px 30px 20px;
-
-  }
-
-  .img_header {
-      content: url(../img/801x410_rick.jpg);
-      width: auto;
-      height: 100px;
-      padding-right: 20px;
-  }
-
+.container_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        cursor: pointer;
+        float: left;
+        margin: 1em;
+    }
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        margin: 15px 0px;
+    }
+    li {
+        list-style: none;
+        margin: 0px 10px;
+    }
+    ul a {
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        display: inline-block;
+        padding: 15px 20px;
+        position: relative;
+    }
+    ul a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #fff;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    ul a:hover {
+        color: rgba(255, 255, 255, 0.750);
+    }
+    ul a:hover:after {
+        width: 100%;
+        left: 0;
+    }
 }
 
-.choice_type{
-  width: 100%;
-  background-color: white;
-  height: 100px;
 
+/* nav */
+
+.choice_type {
+    width: 100%;
+    background-color: white;
+    height: 100px;
 }
 
-
-
-  #container_lieux {
+#container_lieux {
     display: flex;
     flex-wrap: wrap;
     padding: 40px 40px 40px 40px;
     flex-wrap: wrap;
-  }
-  
+}
 
-  .card__text-container {
-       
-    background-color:red($color: #000000);
+.card__text-container {
+    background-color: red($color: #000000);
     border-radius: 10px;
     padding: 12px;
     margin: 12px;
     margin-top: 25px;
-    
     text-align: center;
-    color:white;
+    color: white;
     justify-content: center;
-
     .location-name {
-      background-color: purple;
-      font-size: 30px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 10px 10px 10px 10px;
-
-      &:hover {
-        background-color: rgb(63, 1, 63);
-      }
-
-      
-    }  
+        background-color: purple;
+        font-size: 30px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 10px 10px 10px 10px;
+        &:hover {
+            background-color: rgb(63, 1, 63);
+        }
+    }
 }
 
-.location_details{
-        display: none!important;
-      }
-
-.character_details{
-  display: none!important;  
+.location_details {
+    display: none!important;
 }
 
-ul{
-  list-style: none;
-  text-align: left;
-  padding-top: 0px;
-  margin: 10px;
-
+.character_details {
+    display: none!important;
 }
 
-li{
-  font-size: 16px;
+ul {
+    list-style: none;
+    text-align: left;
+    padding-top: 0px;
+    margin: 10px;
+}
+
+li {
+    font-size: 16px;
 }
 
 .character {
-
-  width: 90%;
-  height: 150px;
-  display: flex;
-  flex-direction: row;
-  background: purple;
-  border-radius: 0.5rem;
-  margin: 0.75rem;
-  
-    img{
-      margin: 10px;
-      height: 130px;
+    width: 90%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    background: purple;
+    border-radius: 0.5rem;
+    margin: 0.75rem;
+    img {
+        margin: 10px;
+        height: 130px;
         width: auto;
         border-radius: 50%;
-    
-  }
-
-  .characters_content {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 10px;
-    width: 50%;
-  }
-
-
-
-
+    }
+    .characters_content {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 10px;
+        width: 50%;
+    }
 }
 
 .scroller {
-  width: 400px;
-  height: 250px;
-  overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
-
-  background: (url(../img/Rick-and-Morty_decord_fond_section.jpeg));
-  background-size: 100%;
-}
-  
-
-.fa-space-shuttle{
-  color: white;
+    width: 400px;
+    height: 250px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+    background: (url(../img/Rick-and-Morty_decord_fond_section.jpeg));
+    background-size: 100%;
 }
 
+.fa-space-shuttle {
+    color: white;
+}
