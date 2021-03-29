@@ -1,3 +1,5 @@
+window.onload = LoadEpisode();
+
 function LoadEpisode() {
 
     const container_episode = document.querySelector("#container_episode");
@@ -109,5 +111,3 @@ function LoadEpisode() {
         console.error(error);
     })
 }
-
-export { LoadEpisode };
