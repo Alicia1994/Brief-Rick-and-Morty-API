@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/episodes.scss">
+    <link rel="icon" type="image/png" sizes="32x32" href="">
+    <title>Brief-Rick-and-Morty-API</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="container_nav">
+                <a href="index.html"><img src="src/img/Rick_and_Morty_logo.png" href="index.html"></a>
+                <ul>
+                    <li><a href="episodes.html">Episodes</a></li>
+                    <li><a href="personnages.html">Personnages</a></li>
+                    <li><a href="lieux.html">Lieux</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <fieldset>
+
+                <input type="radio" id="all" name="num_saison" value="all" checked>
+                <label for="Saison"> Toute les saisons </label>
+
+                <input type="radio" id="S01" name="num_saison" value="S01">
+                <label for="Saison"> Saison 01 </label>
+
+                <input type="radio" id="S02" name="num_saison" value="S02">
+                <label for="Saison"> Saison 02 </label>
+
+                <input type="radio" id="S03" name="num_saison" value="S03">
+                <label for="Saison"> Saison 03 </label>
+
+                <input type="radio" id="S04" name="num_saison" value="S04">
+                <label for="Saison"> Saison 04 </label>
+
+            </fieldset>
+            <div id="container_episode"></div>
+        </section>
+    </main>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>
