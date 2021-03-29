@@ -51,16 +51,14 @@ header{
     flex-wrap: wrap;
   }
   
-  .card {
-    
+
+  .card__text-container {
+       
     background-color:red($color: #000000);
     border-radius: 10px;
     padding: 12px;
     margin: 12px;
     margin-top: 25px;
-  }
-
-  .card__text-container {
     
     text-align: center;
     color:white;
