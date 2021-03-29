@@ -83,11 +83,7 @@ function LoadLocation() {
                                 
                                 title.addEventListener("click", (event)=> {
     
-                                        let listUriCharacter = newTabData[index].residents;
-
-                                        fetch(event.target.dataset.url).then((resp) => {                                
-                                            return resp.json()
-                                        }).then((location) => {
+                                        let listUriCharacter = newTabData[index].residents; 
                                             getCharacterDetails(listUriCharacter, event.target);
 
                                         let clickScroll_details = event.target.childNodes[3];
@@ -96,8 +92,7 @@ function LoadLocation() {
                                                     
                                         toggleClass(clickScroll_character, "character_details");
                                         toggleClass(clickScroll_details, "location_details");
-                                      })      
-                                        
+                                                                                            
                                 })
                             });                            
                     });
