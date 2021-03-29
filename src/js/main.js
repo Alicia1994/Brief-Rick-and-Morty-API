@@ -13,7 +13,6 @@ function LoadEpisode() {
         .then(function(data) {
 
             let tabData = data[0].results.concat(data[1].results, data[2].results);
-            console.log(tabData);
 
             for (const episode of tabData) {
 
@@ -21,6 +20,21 @@ function LoadEpisode() {
                     <div class="episode-name" id="episode-${episode.id}">${episode.episode} - ${episode.name}</div>
                     <div id="characters"></div>
                 `
+            }
+
+            let typesRadio = document.querySelectorAll("input[type=radio]");
+            for (let j = 0; j < typesRadio.length; j++) {
+
+                typesRadio[j].addEventListener("change", (e) => {
+                    let newTabData;
+                    if (e.target.value != "all") {
+                        newTabData = tabData.filter(data => data.num == `${e.target.id}`);
+                        console.log(tabData[k].episode);
+                    } else {
+                        newTabData = tabData;
+                    }
+
+                })
             }
 
             let divEpisode = document.querySelectorAll('.episode-name');

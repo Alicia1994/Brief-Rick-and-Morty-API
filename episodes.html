@@ -23,29 +23,27 @@
         </header>
         <section>
             <fieldset>
-                <div>
-                    <label>
-                        <input type="radio" name="radio"/>
-                        <span>Saison 01</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio" checked/>
-                        <span>Saison 02</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio"/>
-                        <span>Saison 03</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio"/>
-                        <span>Saison 04</span>
-                    </label>
-                </div>
+
+                <input type="radio" id="all" name="num_saison" value="all" checked>
+                <label for="Saison"> Toute les saisons </label>
+
+                <input type="radio" id="S01" name="num_saison" value="S01">
+                <label for="Saison"> Saison 01 </label>
+
+                <input type="radio" id="S02" name="num_saison" value="S02">
+                <label for="Saison"> Saison 02 </label>
+
+                <input type="radio" id="S03" name="num_saison" value="S03">
+                <label for="Saison"> Saison 03 </label>
+
+                <input type="radio" id="S04" name="num_saison" value="S04">
+                <label for="Saison"> Saison 04 </label>
+
             </fieldset>
-            <div id="list-episodes"></div>
+            <div id="container_episode"></div>
         </section>
     </main>
-    <script src="src/js/main.js"></script>
+    <script src="src/js/main2.js"></script>
 </body>
 
 </html>

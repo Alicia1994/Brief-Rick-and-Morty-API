@@ -1,4 +1,4 @@
-#list-episodes {
+#container_episode {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,11 +19,11 @@
     color: #00B0C7;
 }
 
-.display-none {
+.character_details {
     display: none!important;
 }
 
-#characters {
+#character_details {
     display: flex;
     flex-flow: wrap;
 }
